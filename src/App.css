@@ -1,3 +1,12 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button :active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
 .App {
   text-align: center;
 }
@@ -7,20 +16,49 @@
   flex-direction: column;
   align-items: center;
 }
+
+.add-task {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-task-form {
+  display: flex;
+}
+
 .add-task input {
   border: 2px solid #8685ef;
+  border-radius: 6px;
+  background-color: #252525;
+  box-shadow: 3px 3px #8685ef;
+  color: #fafafa;
+  font-size: 1.25rem;
   margin: 0 1rem;
   padding: 0.5rem;
   width: 30vw;
 }
 
-.add-task button {
-  border: none;
-  background-color: #8685ef;
-  color: #fff;
-  padding: 0.5rem 1.5rem;
+.add-task input:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.add-task input:focus {
+  outline: none;
+}
+
+.add-btn {
+  align-items: center;
+  display: flex;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  font-size: 1.6rem;
   border-radius: 6px;
-  box-shadow: 3px 2px 5px #252525;
+  border: 2px solid #8685ef;
+  background: #252525;
+  box-shadow: 3px 3px #8685ef;
+  cursor: pointer;
 }
 
 .task {
@@ -34,22 +72,33 @@
   border-radius: 0.5rem;
   padding: 0.2rem 1rem;
   margin-bottom: 1.2rem;
-  width: 40vw;  
+  width: 40vw;
 }
 
 .task span {
   font-size: 1.5rem;
 }
 
-.check-btn {
+.buttons {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.buttons button {
+  cursor: pointer;
   background-color: transparent;
   font-size: 1.5rem;
   border: none;
+}
+
+.delete-btn {
+  color: red;
+}
+
+.check-btn {
   color: #fff;
-  position: absolute;
-  margin: 0.4rem 0;
-  right: 1rem;
-  cursor: pointer;
 }
 
 .done {
