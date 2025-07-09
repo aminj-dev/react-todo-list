@@ -2,9 +2,11 @@ import { FaSquareCheck } from "react-icons/fa6";
 import { ImCheckboxUnchecked } from "react-icons/im";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export const TasksList = ({ tasks, setTasks }) => {
+  const navigate = useNavigate();
+
   const handleToggleDone = (id) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
@@ -36,10 +38,8 @@ export const TasksList = ({ tasks, setTasks }) => {
                 <li key={task.id} className="task">
                   <span className={task.done ? "done" : ""}>{task.title}</span>
                   <div className="buttons">
-                    <button>
-                      <Link to={`task/${task.id}`}>
+                    <button onClick={() => navigate(`task/${task.id}`)}>                      
                         <FiMoreHorizontal />
-                      </Link>
                     </button>
                     <button
                       className="delete-btn"

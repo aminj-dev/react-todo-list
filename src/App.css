@@ -140,7 +140,7 @@ button :active {
   margin-bottom: 0.5rem;
 }
 
-.task-detail-card button {
+.task-detail-card-btn {
   display: flex ;
   align-items: center;
   justify-content: center;
@@ -151,9 +151,6 @@ button :active {
   bottom: 1.75rem;
   left: 1.75rem;
   border-radius: 10px;
-}
-
-.task-detail-card-btn {
   color: #fff;
   font-size: 2rem;
   font-weight: bolder;

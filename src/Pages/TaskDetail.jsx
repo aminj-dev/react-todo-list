@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoReturnUpBackSharp } from "react-icons/io5";
 
 export const TaskDetail = ({ tasks }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const task = tasks.find((t) => t.id === Number(id));
   if (!task) return <h1>there is no task with id:{id}</h1>;
@@ -13,10 +13,8 @@ export const TaskDetail = ({ tasks }) => {
         <h2>id : {id}</h2>
         <h2>status : {task.done ? "task done" : "not done"}</h2>
         <h2>time: {task.date}</h2>
-        <button>
-            <Link to='/' className="task-detail-card-btn">
+        <button className="task-detail-card-btn" onClick={() => navigate('/')}>
             <IoReturnUpBackSharp />
-            </Link>
         </button>
       </div>
     </div>
