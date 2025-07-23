@@ -1,7 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { IoReturnUpBackSharp } from "react-icons/io5";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 
-export const TaskDetail = ({ tasks }) => {
+export const TaskDetail = () => {
+  const {tasks} = useContext(MyContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const task = tasks.find((t) => t.id === Number(id));

@@ -2,29 +2,13 @@ import { FaSquareCheck } from "react-icons/fa6";
 import { ImCheckboxUnchecked } from "react-icons/im";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { MyContext } from "../context/MyContext";
 
-export const TasksList = ({ tasks, setTasks }) => {
+export const TasksList = () => {
   const navigate = useNavigate();
-
-  const handleToggleDone = (id) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          done: !task.done,
-        };
-      } else {
-        return task;
-      }
-    });
-    setTasks(updatedTasks);
-  };
-
-  const handleDeleteTask = (id) => {
-    const updatedList = tasks.filter((task) => task.id !== id);
-    setTasks(updatedList);
-  };
+  const { tasks, handleToggleDone, handleDeleteTask } = useContext(MyContext);
 
   return (
     <div className="task-list">
@@ -38,8 +22,8 @@ export const TasksList = ({ tasks, setTasks }) => {
                 <li key={task.id} className="task">
                   <span className={task.done ? "done" : ""}>{task.title}</span>
                   <div className="buttons">
-                    <button onClick={() => navigate(`task/${task.id}`)}>                      
-                        <FiMoreHorizontal />
+                    <button onClick={() => navigate(`task/${task.id}`)}>
+                      <FiMoreHorizontal />
                     </button>
                     <button
                       className="delete-btn"

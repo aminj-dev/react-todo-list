@@ -1,21 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdOutlineLibraryAdd } from "react-icons/md";
+import { MyContext } from "../context/MyContext";
 
-export const AddTask = ({ tasks, setTasks }) => {
+export const AddTask = () => {
   const [inputValue, setInputValue] = useState("");
-
-  const handleAddTask = () => {
-    if (inputValue.trim() === "") return;
-    const time = new Date().toLocaleString("fa-IR");
-    const newTask = {
-      id: Date.now(),
-      title: inputValue,
-      done: false,
-      date: time
-    };
-    setTasks([...tasks, newTask]);
-    setInputValue("");
-  };
+  const { handleAddTask } = useContext(MyContext);
 
   return (
     <div className="add-task">
@@ -27,7 +16,10 @@ export const AddTask = ({ tasks, setTasks }) => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button onClick={handleAddTask} className="add-btn">
+        <button
+          onClick={() => handleAddTask({inputValue, setInputValue})}
+          className="add-btn"
+        >
           <MdOutlineLibraryAdd />
         </button>
       </div>
