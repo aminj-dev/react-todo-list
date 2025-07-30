@@ -4,7 +4,12 @@ import { MyContext } from "../context/MyContext";
 
 export const AddTask = () => {
   const [inputValue, setInputValue] = useState("");
-  const { handleAddTask } = useContext(MyContext);
+  const { dispatch } = useContext(MyContext);
+
+  const handleAddTask = () => {
+    dispatch({type: "handleAddTask", payload: { inputValue: inputValue },});
+    setInputValue("");
+  }
 
   return (
     <div className="add-task">
@@ -17,7 +22,7 @@ export const AddTask = () => {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button
-          onClick={() => handleAddTask({inputValue, setInputValue})}
+          onClick={() => handleAddTask()}
           className="add-btn"
         >
           <MdOutlineLibraryAdd />

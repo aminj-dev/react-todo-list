@@ -1,45 +1,53 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const MyContext = createContext();
+const initialState = [];
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "handleAddTask":
+      if (action.payload.inputValue.trim() === "") return;
+      const time = new Date().toLocaleString("fa-IR");
+      const newTask = {
+        id: Date.now(),
+        title: action.payload.inputValue,
+        done: false,
+        date: time,
+      };
+      return [...state, newTask];
+
+    case "handleToggleDone":
+      const updatedTasks = state.map((task) => {
+        if (task.id === action.payload.id) {
+          return {
+            ...task,
+            done: !task.done,
+          };
+        } else {
+          return task;
+        }
+      });
+      return (state = updatedTasks);
+
+    case "handleDeleteTask":
+      const updatedList = state.filter((task) => task.id !== action.payload.id);
+      return (state = updatedList);
+    default:
+      return state;
+  }
+};
 
 export const TodoProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([]);
-
-  const handleAddTask = ({inputValue ,setInputValue}) => {
-    if (inputValue.trim() === "") return;
-    const time = new Date().toLocaleString("fa-IR");
-    const newTask = {
-      id: Date.now(),
-      title: inputValue,
-      done: false,
-      date: time
-    };
-    setTasks([...tasks, newTask]);
-    setInputValue("");
-  };
-
-  const handleToggleDone = (id) => {
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          done: !task.done,
-        };
-      } else {
-        return task;
-      }
-    });
-    setTasks(updatedTasks);
-  };
-
-  const handleDeleteTask = (id) => {
-    const updatedList = tasks.filter((task) => task.id !== id);
-    setTasks(updatedList);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <MyContext.Provider value={{tasks ,handleAddTask , setTasks, handleToggleDone, handleDeleteTask}}>
-        { children }
+    <MyContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
+      {children}
     </MyContext.Provider>
   );
 };

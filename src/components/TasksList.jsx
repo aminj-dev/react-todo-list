@@ -8,13 +8,13 @@ import { MyContext } from "../context/MyContext";
 
 export const TasksList = () => {
   const navigate = useNavigate();
-  const { tasks, handleToggleDone, handleDeleteTask } = useContext(MyContext);
+  const { state, dispatch } = useContext(MyContext);
 
   return (
     <div className="task-list">
-      {tasks.length > 0 && (
+      {state.length > 0 && (
         <ul>
-          {tasks
+          {state
             .slice()
             .reverse()
             .map((task) => {
@@ -27,13 +27,23 @@ export const TasksList = () => {
                     </button>
                     <button
                       className="delete-btn"
-                      onClick={() => handleDeleteTask(task.id)}
+                      onClick={() =>
+                        dispatch({
+                          type: "handleDeleteTask",
+                          payload: { id: task.id },
+                        })
+                      }
                     >
                       <RiDeleteBin6Line />
                     </button>
                     <button
                       className="check-btn"
-                      onClick={() => handleToggleDone(task.id)}
+                      onClick={() =>
+                        dispatch({
+                          type: "handleToggleDone",
+                          payload: { id: task.id },
+                        })
+                      }
                     >
                       {task.done === false ? (
                         <ImCheckboxUnchecked />

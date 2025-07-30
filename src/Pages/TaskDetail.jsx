@@ -4,10 +4,10 @@ import { useContext } from "react";
 import { MyContext } from "../context/MyContext";
 
 export const TaskDetail = () => {
-  const {tasks} = useContext(MyContext);
+  const {state} = useContext(MyContext);
   const navigate = useNavigate();
   const { id } = useParams();
-  const task = tasks.find((t) => t.id === Number(id));
+  const task = state.find((t) => t.id === Number(id));
   if (!task) return <h1>there is no task with id:{id}</h1>;
   return (
     <div className="task-datail-container">
