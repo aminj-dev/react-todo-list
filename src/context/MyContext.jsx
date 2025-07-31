@@ -1,4 +1,5 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
+import { getInitialState, updetLocalStorage } from "./LocalStorage";
 
 export const MyContext = createContext();
 const initialState = [];
@@ -38,7 +39,11 @@ const reducer = (state, action) => {
 };
 
 export const TodoProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, getInitialState);
+
+  useEffect(() => {
+    updetLocalStorage(state)
+  }, [state])
 
   return (
     <MyContext.Provider
