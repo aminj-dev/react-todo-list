@@ -18,7 +18,7 @@ export const AddTask = () => {
       <h1 className="text-[25px] font-bold">TODO APP</h1>
       <div className="flex justify-center gap-4 h-12">
         <input
-          className="border-2 border-[#8685ef] rounded-md bg-[#252525] shadow-[3px_3px_#8685ef] text-[#fafafa] text-xl px-4 py-2 w-[30vw] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] focus:outline-none"
+          className="border-2 border-[#8685ef] rounded-md bg-[#252525] shadow-[3px_3px_#8685ef] text-[#fafafa] text-xl px-4 py-2 w-[70vw] md:w-[40vw] sm:w-[55vw] active:shadow-none active:translate-x-[3px] active:translate-y-[3px] focus:outline-none"
           type="text"
           placeholder=".e.g got to the gym"
           value={inputValue}

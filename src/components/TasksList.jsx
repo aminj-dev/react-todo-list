@@ -19,7 +19,7 @@ export const TasksList = () => {
             .reverse()
             .map((task) => {
               return (
-                <li key={task.id} className="text-white relative flex items-center list-none bg-[#8685ef] shadow-[6px_6px_15px_#bebebe] rounded-lg py-[0.2rem] w-[40vw] h-10">
+                <li key={task.id} className="text-white relative flex items-center list-none bg-[#8685ef] shadow-[6px_6px_15px_#bebebe] rounded-lg py-[0.2rem] md:w-[40vw] sm:w-[50vw] w-[75vw] h-[8vh] md:h-12 sm:h-[10vh]">
                   <span className={task.done ? "line-through text-2xl left-3 absolute" : "text-2xl absolute left-3"}>{task.title}</span>
                   <div className="absolute right-4 flex items-center gap-2">
                     <button onClick={() => navigate(`task/${task.id}`)} className="cursor-pointer bg-transparent text-2xl border-none">
