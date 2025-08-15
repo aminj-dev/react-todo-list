@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <TodoProvider>
-        <div className="App">
+        <div className="flex text-center flex-col items-center">
           <Routes>
             <Route
               path="/"

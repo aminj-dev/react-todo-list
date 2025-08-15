@@ -7,7 +7,6 @@ const initialState = [];
 const reducer = (state, action) => {
   switch (action.type) {
     case "handleAddTask":
-      if (action.payload.inputValue.trim() === "") return;
       const time = new Date().toLocaleString("fa-IR");
       const newTask = {
         id: Date.now(),
